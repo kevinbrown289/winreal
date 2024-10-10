@@ -240,8 +240,12 @@
                 }
             })
             .catch(error => {
-                alert('Submission failed due to network error.');
-                console.error('Form submission error:', error);
+                console.error('Form submission error:', error.message);
+                if (error.message.includes('CORS')) {
+                    alert('CORS issue detected. Please ensure Formspark is configured to accept requests from your domain.');
+                } else {
+                    alert('Submission failed due to network error. Please check your internet connection or try again later.');
+                }
             });
         });
 
@@ -264,8 +268,12 @@
                 }
             })
             .catch(error => {
-                alert('Submission failed due to network error.');
-                console.error('Form submission error:', error);
+                console.error('Form submission error:', error.message);
+                if (error.message.includes('CORS')) {
+                    alert('CORS issue detected. Please ensure Formspark is configured to accept requests from your domain.');
+                } else {
+                    alert('Submission failed due to network error. Please check your internet connection or try again later.');
+                }
             });
         });
     </script>
