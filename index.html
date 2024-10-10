@@ -174,7 +174,10 @@
                         window.location.href = "https://www.facebook.com";
                     }, 1000);
                 } else {
-                    alert("There was an error processing your request. Please try again.");
+                    response.text().then(function(text) {
+                        console.error('Error response:', text);
+                        alert("There was an error processing your request. Please try again.");
+                    });
                 }
             }).catch(function(error) {
                 console.error('Form submission error:', error);
