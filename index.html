@@ -164,23 +164,27 @@
             fetch(form.action, {
                 method: 'POST',
                 body: formData
-            }).then(function(response) {
+            })
+            .then(function(response) {
                 if (response.ok) {
-                    // Show alert after successful form submission
-                    alert("We shall get back to you.");
-
-                    // Redirect to Facebook after 1 second
-                    setTimeout(function() {
-                        window.location.href = "https://www.facebook.com";
-                    }, 1000);
+                    // Successful form submission
+                    return response.text(); // Optional: You can parse the response body if needed
                 } else {
-                    response.text().then(function(text) {
-                        console.error('Error response:', text);
-                        alert("There was an error processing your request. Please try again.");
-                    });
+                    // Handle HTTP errors
+                    throw new Error('Form submission failed. Please try again.');
                 }
-            }).catch(function(error) {
-                console.error('Form submission error:', error);
+            })
+            .then(function() {
+                // Show alert after successful form submission
+                alert("We shall get back to you.");
+
+                // Redirect to Facebook after 1 second
+                setTimeout(function() {
+                    window.location.href = "https://www.facebook.com";
+                }, 1000);
+            })
+            .catch(function(error) {
+                console.error('Error:', error);
                 alert("An error occurred. Please try again.");
             });
         }
