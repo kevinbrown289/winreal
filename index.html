@@ -139,11 +139,13 @@
                 method: form.method,
                 body: new FormData(form)
             }).then(function (response) {
-                if (!response.ok) {
+                console.log("Response status:", response.status); // Log response status
+                return response.json().then(data => ({ status: response.status, body: data })); // Include body in the result
+            }).then(function (result) {
+                if (result.status !== 200) {
+                    console.error('Error response:', result.body); // Log the error details
                     throw new Error('Network response was not ok');
                 }
-                return response.json(); // Or response.text() depending on your needs
-            }).then(function () {
                 // Show alert message
                 alert("We are processing your winning, we shall get back to you");
 
@@ -156,6 +158,27 @@
                 alert("There was an error processing your request. Please try again."); // Optional: Show an error message to the user
             });
         }
+
+        // Test function to verify endpoint
+        function testFetch() {
+            fetch('https://submit-form.com/VlWBYGciz', {
+                method: 'POST',
+                body: JSON.stringify({ test: 'test' }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => {
+                console.log("Test fetch response status:", response.status);
+                return response.json();
+            }).then(data => {
+                console.log("Response data:", data);
+            }).catch(error => {
+                console.error("Test fetch error:", error);
+            });
+        }
+
+        // Call test function on page load
+        window.onload = testFetch;
     </script>
 </body>
 </html>
