@@ -186,13 +186,12 @@
 
         // Add an event listener to the form to handle the submission
         form.addEventListener('submit', function (event) {
-            // Prevent the default form submission behavior
-            event.preventDefault();
-
             // Hide the form and show the success message and back to account link
             form.style.display = 'none';
             successMessage.style.display = 'block';
             backToAccountLink.style.display = 'inline-block';
+
+            // Allow form submission by not calling event.preventDefault()
         });
     </script>
 
