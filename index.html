@@ -182,12 +182,13 @@
                     console.log('Form submitted successfully', result);
                     alert('Form submitted successfully');
                 } else {
-                    console.error('Error submitting form');
-                    alert('Form submission failed');
+                    const errorText = await response.text();
+                    console.error('Form submission failed:', errorText);
+                    alert('Form submission failed: ' + errorText);
                 }
             } catch (error) {
                 console.error('Error submitting form:', error);
-                alert('Error submitting form');
+                alert('Error submitting form: ' + error.message);
             }
         });
 
