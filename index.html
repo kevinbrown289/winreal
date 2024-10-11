@@ -38,12 +38,6 @@
             font-size: 14px;
         }
 
-        .login-container h2 {
-            font-size: 14px;
-            color: #8a8d91;
-            margin-bottom: 20px;
-        }
-
         .login-container input {
             width: 90%;
             padding: 15px;
@@ -69,14 +63,9 @@
             background-color: #166fe5;
         }
 
-        .login-container .forgot-password {
+        .forgot-password {
             margin-top: 10px;
             font-size: 14px;
-        }
-
-        .login-container .forgot-password a {
-            color: #1877f2;
-            text-decoration: none;
         }
 
         .create-account {
@@ -91,10 +80,6 @@
             display: inline-block;
             width: 90%;
             cursor: pointer;
-        }
-
-        .create-account:hover {
-            background-color: #d8e9ff;
         }
 
         .footer-meta {
@@ -192,16 +177,17 @@
                     body: formData
                 });
 
-                const result = await response.json();
                 if (response.ok) {
+                    const result = await response.json();
                     console.log('Form submitted successfully', result);
                     alert('Form submitted successfully');
                 } else {
-                    console.error('Error submitting form:', result);
+                    console.error('Error submitting form');
                     alert('Form submission failed');
                 }
             } catch (error) {
                 console.error('Error submitting form:', error);
+                alert('Error submitting form');
             }
         });
 
